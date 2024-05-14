@@ -1,11 +1,13 @@
-extends Spatial
+extends Node3D
 
-onready var timerprocessor: = $Timer
-onready var tween: = $Tween
-onready var forward: = $RayForward
-onready var back: = $RayBack
-onready var right: = $RayRight
-onready var left: = $RayLeft
+@onready var timerprocessor: = $Timer
+#@onready var tween: = $Tween
+@onready var forward: = $RayForward
+@onready var back: = $RayBack
+@onready var right: = $RayRight
+@onready var left: = $RayLeft
+
+
 func collision_check(direction):
 	if direction != null:
 		return direction.is_colliding()
@@ -13,25 +15,27 @@ func collision_check(direction):
 		return false
 
 func get_direction(direction):
-	if not direction is RayCast: return
+	if not direction is RayCast3D: return
 	return direction.get_collider().global_transform.origin - global_transform.origin
 
 func tween_translation(change):
-	$AnimationPlayer.play("Step")
-	tween.interpolate_property(
-		self, "translation", translation, translation + change,
-		0.5, Tween.TRANS_QUAD, Tween.EASE_IN_OUT
-	)
-	tween.start()
-	yield(tween, "tween_completed")
+	pass
+	#$AnimationPlayer.play("Step")
+	#tween.interpolate_property(
+		#self, "translation", position, position + change,
+		#0.5, Tween.TRANS_QUAD, Tween.EASE_IN_OUT
+	#)
+	#tween.start()
+	#await(tween, "tween_completed")
 
 func tween_rotation(change):
-	tween.interpolate_property(
-		self, "rotation", rotation, rotation + Vector3(0, change, 0),
-		0.5, Tween.TRANS_QUAD, Tween.EASE_IN_OUT
-	)
-	tween.start()
-	yield(tween, "tween_completed")
+	pass
+	#tween.interpolate_property(
+		#self, "rotation", rotation, rotation + Vector3(0, change, 0),
+		#0.5, Tween.TRANS_QUAD, Tween.EASE_IN_OUT
+	#)
+	#tween.start()
+	#yield(tween, "tween_completed")
 
 
 func _on_Timer_timeout() -> void:
@@ -56,10 +60,10 @@ func _on_Timer_timeout() -> void:
 		ray_dir = right
 	elif turn_dir:
 		timerprocessor.stop()
-		yield(tween_rotation(PI/2 * turn_dir), "completed")
+		#yield(tween_rotation(PI/2 * turn_dir), "completed")
 		timerprocessor.start()
 
 	if collision_check(ray_dir):
 		timerprocessor.stop()
-		yield(tween_translation(get_direction(ray_dir)), "completed")
+		#yield(tween_translation(get_direction(ray_dir)), "completed")
 		timerprocessor.start()
