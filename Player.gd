@@ -18,7 +18,7 @@ func get_direction(direction):
 	if not direction is RayCast3D: return
 	return direction.get_collider().global_transform.origin - global_transform.origin
 
-func tween_translation(change):
+func tween_translation(_change):
 	pass
 	#$AnimationPlayer.play("Step")
 	#tween.interpolate_property(
@@ -28,7 +28,7 @@ func tween_translation(change):
 	#tween.start()
 	#await(tween, "tween_completed")
 
-func tween_rotation(change):
+func tween_rotation(_change):
 	pass
 	#tween.interpolate_property(
 		#self, "rotation", rotation, rotation + Vector3(0, change, 0),
