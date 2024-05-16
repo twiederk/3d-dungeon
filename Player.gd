@@ -1,3 +1,4 @@
+class_name Player
 extends Node3D
 
 @onready var timerprocessor: = $Timer
@@ -7,6 +8,16 @@ extends Node3D
 @onready var right: = $RayRight
 @onready var left: = $RayLeft
 
+
+func _process(delta):
+	if Input.is_action_just_pressed("forward"):
+		position += Vector3(Globals.GRID_SIZE, 0, 0)
+	if Input.is_action_just_pressed("back"):
+		position += Vector3(-Globals.GRID_SIZE, 0, 0)
+	if Input.is_action_just_pressed("strafe_right"):
+		position += Vector3(0, 0, Globals.GRID_SIZE)
+	if Input.is_action_just_pressed("strafe_left"):
+		position += Vector3(0, 0, -Globals.GRID_SIZE)
 
 func collision_check(direction):
 	if direction != null:
