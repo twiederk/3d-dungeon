@@ -15,7 +15,7 @@ var facing = Facing.North
 
 func _process(_delta):
 	if Input.is_action_just_pressed("forward"):
-		position += Vector3(Globals.GRID_SIZE, 0, 0)
+		move_forward()
 	if Input.is_action_just_pressed("back"):
 		position += Vector3(-Globals.GRID_SIZE, 0, 0)
 	if Input.is_action_just_pressed("strafe_right"):
@@ -23,14 +23,14 @@ func _process(_delta):
 	if Input.is_action_just_pressed("strafe_left"):
 		position += Vector3(0, 0, -Globals.GRID_SIZE)
 	if Input.is_action_just_pressed("turn_left"):
-		facing = turnLeft()
+		facing = turn_left()
 	if Input.is_action_just_pressed("turn_right"):
-		facing = turnRight()
+		facing = turn_right()
 	if Input.is_action_just_pressed("teleport_to_zero"):
 		teleport_to_zero()
 
 
-func turnLeft() -> int:
+func turn_left() -> int:
 	if facing == Facing.North:
 		facing = Facing.West
 	elif facing == Facing.West:
@@ -43,7 +43,7 @@ func turnLeft() -> int:
 	return facing
 
 
-func turnRight() -> int:
+func turn_right() -> int:
 	if facing == Facing.North:
 		facing = Facing.East
 	elif facing == Facing.East:
@@ -59,8 +59,19 @@ func turnRight() -> int:
 func teleport_to_zero():
 		position = Vector3.ZERO
 		rotation = Vector3.ZERO
+		facing = Facing.North
 
 
+func move_forward():
+	if facing == Facing.North:
+		position += Vector3(0, 0, -Globals.GRID_SIZE)
+	elif facing == Facing.East:
+		position += Vector3(Globals.GRID_SIZE, 0, 0)
+	elif facing == Facing.South:
+		position += Vector3(0, 0, Globals.GRID_SIZE)
+	elif facing == Facing.West:
+		position += Vector3(-Globals.GRID_SIZE, 0, 0)
+	
 func collision_check(direction):
 	if direction != null:
 		return direction.is_colliding()
