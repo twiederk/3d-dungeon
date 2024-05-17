@@ -16,12 +16,12 @@ var facing = Facing.North
 func _process(_delta):
 	if Input.is_action_just_pressed("forward"):
 		move_forward()
-	if Input.is_action_just_pressed("back"):
-		position += Vector3(-Globals.GRID_SIZE, 0, 0)
-	if Input.is_action_just_pressed("strafe_right"):
-		position += Vector3(0, 0, Globals.GRID_SIZE)
-	if Input.is_action_just_pressed("strafe_left"):
-		position += Vector3(0, 0, -Globals.GRID_SIZE)
+	#if Input.is_action_just_pressed("back"):
+		#position += Vector3(-Globals.GRID_SIZE, 0, 0)
+	#if Input.is_action_just_pressed("strafe_right"):
+		#position += Vector3(0, 0, Globals.GRID_SIZE)
+	#if Input.is_action_just_pressed("strafe_left"):
+		#position += Vector3(0, 0, -Globals.GRID_SIZE)
 	if Input.is_action_just_pressed("turn_left"):
 		facing = turn_left()
 	if Input.is_action_just_pressed("turn_right"):
