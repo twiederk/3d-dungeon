@@ -1,6 +1,10 @@
 class_name Player
 extends Node3D
 
+enum Facing { North = 0, West = 90, South = 180, East = 270 }
+
+var facing = Facing.North
+
 @onready var timerprocessor: = $Timer
 #@onready var tween: = $Tween
 @onready var forward: = $RayForward
@@ -9,7 +13,7 @@ extends Node3D
 @onready var left: = $RayLeft
 
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("forward"):
 		position += Vector3(Globals.GRID_SIZE, 0, 0)
 	if Input.is_action_just_pressed("back"):
@@ -18,6 +22,44 @@ func _process(delta):
 		position += Vector3(0, 0, Globals.GRID_SIZE)
 	if Input.is_action_just_pressed("strafe_left"):
 		position += Vector3(0, 0, -Globals.GRID_SIZE)
+	if Input.is_action_just_pressed("turn_left"):
+		facing = turnLeft()
+	if Input.is_action_just_pressed("turn_right"):
+		facing = turnRight()
+	if Input.is_action_just_pressed("teleport_to_zero"):
+		teleport_to_zero()
+
+
+func turnLeft() -> int:
+	if facing == Facing.North:
+		facing = Facing.West
+	elif facing == Facing.West:
+		facing = Facing.South
+	elif facing == Facing.South:
+		facing = Facing.East
+	elif facing == Facing.East:
+		facing = Facing.North
+	rotation.y = deg_to_rad(facing)
+	return facing
+
+
+func turnRight() -> int:
+	if facing == Facing.North:
+		facing = Facing.East
+	elif facing == Facing.East:
+		facing = Facing.South
+	elif facing == Facing.South:
+		facing = Facing.West
+	elif facing == Facing.West:
+		facing = Facing.North
+	rotation.y = deg_to_rad(facing)
+	return facing
+
+
+func teleport_to_zero():
+		position = Vector3.ZERO
+		rotation = Vector3.ZERO
+
 
 func collision_check(direction):
 	if direction != null:
@@ -61,13 +103,13 @@ func _on_Timer_timeout() -> void:
 	var turn_dir = int(TURN_Q) - int(TURN_E)
 
 
-	if GO_W: 
+	if GO_W:
 		ray_dir = forward
-	elif GO_S: 
+	elif GO_S:
 		ray_dir = back
-	elif GO_A: 
+	elif GO_A:
 		ray_dir = left
-	elif GO_D: 
+	elif GO_D:
 		ray_dir = right
 	elif turn_dir:
 		timerprocessor.stop()
