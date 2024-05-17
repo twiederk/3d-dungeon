@@ -63,6 +63,8 @@ func teleport_to_zero():
 
 
 func move_forward():
+	if collision_check():
+		return
 	if facing == Facing.North:
 		position += Vector3(0, 0, -Globals.GRID_SIZE)
 	elif facing == Facing.East:
@@ -71,12 +73,21 @@ func move_forward():
 		position += Vector3(0, 0, Globals.GRID_SIZE)
 	elif facing == Facing.West:
 		position += Vector3(-Globals.GRID_SIZE, 0, 0)
-	
-func collision_check(direction):
-	if direction != null:
-		return direction.is_colliding()
-	else:
-		return false
+
+
+func collision_check() -> bool:
+	var walls = Globals.map[position.z / Globals.GRID_SIZE][position.x / Globals.GRID_SIZE]
+	var hex = walls.hex_to_int()
+	if facing == Facing.North:
+		return hex & 0b0001 != 0 
+	if facing == Facing.East:
+		return hex & 0b0010 != 0 
+	if facing == Facing.South:
+		return hex & 0b0100 != 0 
+	if facing == Facing.West:
+		return hex & 0b1000 != 0 
+	return true
+
 
 func get_direction(direction):
 	if not direction is RayCast3D: return
@@ -127,7 +138,7 @@ func _on_Timer_timeout() -> void:
 		#yield(tween_rotation(PI/2 * turn_dir), "completed")
 		timerprocessor.start()
 
-	if collision_check(ray_dir):
-		timerprocessor.stop()
-		#yield(tween_translation(get_direction(ray_dir)), "completed")
-		timerprocessor.start()
+	#if collision_check(ray_dir):
+		#timerprocessor.stop()
+		##yield(tween_translation(get_direction(ray_dir)), "completed")
+		#timerprocessor.start()

@@ -12,6 +12,7 @@ func _ready():
 	#environment.dof_blur_far_enabled = true
 	#environment.dof_blur_near_enabled = true
 	var map = load_map()
+	Globals.map = map
 	generate_map(map)
 
 
