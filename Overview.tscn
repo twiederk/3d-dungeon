@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxt5m1n2jeba5"]
+[gd_scene load_steps=3 format=3 uid="uid://cxt5m1n2jeba5"]
 
+[ext_resource type="Script" path="res://Overview.gd" id="1_4b5w0"]
 [ext_resource type="TileSet" uid="uid://cbqhwqroyjuul" path="res://road_tileset.tres" id="1_6a8wf"]
 
 [node name="Overview" type="Node2D"]
+script = ExtResource("1_4b5w0")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_6a8wf")
