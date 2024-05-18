@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxt5m1n2jeba5"]
+
+[ext_resource type="TileSet" uid="uid://cbqhwqroyjuul" path="res://road_tileset.tres" id="1_6a8wf"]
+
+[node name="Overview" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_6a8wf")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 1, 0, 1, 262145, 3, 2, 262145, 3, 3, 262145, 3, 4, 262145, 3, 5, 131073, 2, 65536, 393217, 1, 65537, 262145, 3, 65538, 262145, 3, 65539, 262145, 3, 65540, 262145, 3, 65541, 458753, 0)
