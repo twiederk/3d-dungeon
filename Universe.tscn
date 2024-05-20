@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b88qctpfhfl38"]
 
 [ext_resource type="Script" path="res://Universe.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://b7tvm6v26tsk3" path="res://Player.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://b7tvm6v26tsk3" path="res://Player3D.tscn" id="3"]
 
 [sub_resource type="Environment" id="Environment_e5fsh"]
 background_mode = 1
