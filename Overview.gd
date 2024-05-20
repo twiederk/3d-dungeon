@@ -49,8 +49,6 @@ func generate_map(map: Array):
 		for x in range(map[0].length()):
 			var walls = map[y][x]
 			var tile_id = hex_to_coords(walls.hex_to_int())
-			# conver walls.hex() to vector in atlas
-			# set tile on tilemap
 			tile_map.set_cell(TILE_SET_LAYER, Vector2(x, y), TILE_SET_SOURCE_ID, tile_id)
 
 
