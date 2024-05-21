@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://b88qctpfhfl38"]
 
 [ext_resource type="Script" path="res://Universe.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://c1u3whdtcoaps" path="res://maps/Map2.tscn" id="2_lwhpe"]
 [ext_resource type="PackedScene" uid="uid://b7tvm6v26tsk3" path="res://Player3D.tscn" id="3"]
-[ext_resource type="PackedScene" uid="uid://du0kaxdr1xedk" path="res://Map.tscn" id="3_iumkp"]
 
 [sub_resource type="Environment" id="Environment_e5fsh"]
 background_mode = 1
@@ -11,7 +11,7 @@ ambient_light_color = Color(0.262745, 0.176471, 0.427451, 1)
 
 [node name="Universe" type="Node3D"]
 script = ExtResource("1")
-MapScene = ExtResource("3_iumkp")
+MapScene = ExtResource("2_lwhpe")
 
 [node name="Player" parent="." instance=ExtResource("3")]
 
