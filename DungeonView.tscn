@@ -9,7 +9,7 @@ background_mode = 1
 ambient_light_source = 2
 ambient_light_color = Color(0.262745, 0.176471, 0.427451, 1)
 
-[node name="Universe" type="Node3D"]
+[node name="DungenView" type="Node3D"]
 script = ExtResource("1_mevt6")
 MapScene = ExtResource("2_og5u1")
 
