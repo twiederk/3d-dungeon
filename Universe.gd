@@ -3,6 +3,9 @@ class_name Universe
 
 const CellScene = preload("res://Cell.tscn")
 
+@onready var tile_map = $Map
+
+
 func _ready():
 	pass
 	#var environment = WorldEnvironment
@@ -11,15 +14,17 @@ func _ready():
 	#environment.ambient_light_color = Color("432d6d")
 	#environment.dof_blur_far_enabled = true
 	#environment.dof_blur_near_enabled = true
-	var map = load_map()
+	
+	#var map = load_map_from_file("res://maps/map1.txt")
+	var map = tile_map.get_hex_map()
 	Globals.map = map
 	generate_map(map)
 
 
-func load_map() -> Array:
+func load_map_from_file(file_name: String) -> Array:
 	var allthelines = []        
 
-	var file = FileAccess.open("res://maps/map3.txt", FileAccess.READ)
+	var file = FileAccess.open(file_name, FileAccess.READ)
 	while !file.eof_reached():
 		var line = file.get_line()
 		print(line)

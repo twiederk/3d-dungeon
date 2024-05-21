@@ -10,6 +10,10 @@ const DIR_EAST = Vector2(GRID_SIZE_2D, 0)
 
 
 func _process(_delta):
+	simple_movement()
+
+
+func simple_movement():
 	if Input.is_action_just_pressed("forward"):
 		if is_blocked(DIR_NORTH):
 			position += DIR_NORTH
