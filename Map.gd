@@ -24,9 +24,6 @@ const coords_to_hex_mapping = {
 	Vector2(6, 3): "f",
 }
 
-func _ready():
-	get_hex_map()
-
 
 func get_hex_map() -> Array:
 	var hex_map = Array()

@@ -1,9 +1,9 @@
 extends Node3D
 class_name Universe
 
-const CellScene = preload("res://Cell.tscn")
+@export var MapScene: PackedScene
 
-@onready var tile_map = $Map
+const CellScene = preload("res://Cell.tscn")
 
 
 func _ready():
@@ -16,9 +16,12 @@ func _ready():
 	#environment.dof_blur_near_enabled = true
 	
 	#var map = load_map_from_file("res://maps/map1.txt")
-	var map = tile_map.get_hex_map()
-	Globals.map = map
-	generate_map(map)
+	if not MapScene is PackedScene: return
+	var map_instance = MapScene.instantiate()
+	add_child(map_instance)
+	var hex_map = map_instance.get_hex_map()
+	Globals.map = hex_map
+	generate_map(hex_map)
 
 
 func load_map_from_file(file_name: String) -> Array:
