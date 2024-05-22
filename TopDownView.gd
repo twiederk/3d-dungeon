@@ -17,9 +17,9 @@ func _ready():
 	Globals.map = dungeon_map.get_hex_map()
 	
 
-func set_player(position: Vector2):
-	sprite_2d.position.x = position.x * GRID_SIZE_2D
-	sprite_2d.position.y = position.y * GRID_SIZE_2D
+func set_player(new_position: Vector2):
+	sprite_2d.position.x = new_position.x * GRID_SIZE_2D
+	sprite_2d.position.y = new_position.y * GRID_SIZE_2D
 
 
 func get_hex_map() -> Array:

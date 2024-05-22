@@ -56,6 +56,5 @@ func create_cell(x: int, z: int) -> Cell:
 	return cell
 
 
-
-func _on_player_moved_player(position: Vector3):
-	top_down_view.set_player(Vector2(position.x, position.z))
+func _on_player_moved_player(new_position: Vector3):
+	top_down_view.set_player(Vector2(new_position.x, new_position.z))
