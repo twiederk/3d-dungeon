@@ -32,6 +32,10 @@ window/size/test_height=720
 
 enabled=PackedStringArray("res://addons/gut/plugin.cfg")
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 forward={
