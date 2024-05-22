@@ -1,6 +1,8 @@
 class_name Player
 extends Node3D
 
+signal moved_player(Vector3)
+
 enum Facing { North = 0, West = 90, South = 180, East = 270 }
 
 var facing = Facing.North
@@ -73,6 +75,8 @@ func move_forward():
 		position += Vector3(0, 0, Globals.GRID_SIZE)
 	elif facing == Facing.West:
 		position += Vector3(-Globals.GRID_SIZE, 0, 0)
+	moved_player.emit(position)
+		
 
 
 func collision_check() -> bool:

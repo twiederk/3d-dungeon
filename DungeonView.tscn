@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://b88qctpfhfl38"]
 
 [ext_resource type="Script" path="res://DungeonView.gd" id="1_mevt6"]
-[ext_resource type="PackedScene" uid="uid://du0occ3jmk0td" path="res://maps/Map3.tscn" id="2_od3k4"]
 [ext_resource type="PackedScene" uid="uid://b7tvm6v26tsk3" path="res://Player3D.tscn" id="3_nu5us"]
+[ext_resource type="PackedScene" uid="uid://ce3arwle1i3ch" path="res://TopDownView.tscn" id="4_2a3bp"]
 
 [sub_resource type="Environment" id="Environment_e5fsh"]
 background_mode = 1
@@ -11,9 +11,12 @@ ambient_light_color = Color(0.262745, 0.176471, 0.427451, 1)
 
 [node name="DungenView" type="Node3D"]
 script = ExtResource("1_mevt6")
-MapScene = ExtResource("2_od3k4")
 
 [node name="Player" parent="." instance=ExtResource("3_nu5us")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_e5fsh")
+
+[node name="TopDownView" parent="." instance=ExtResource("4_2a3bp")]
+
+[connection signal="moved_player" from="Player" to="." method="_on_player_moved_player"]

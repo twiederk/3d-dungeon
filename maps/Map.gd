@@ -49,7 +49,6 @@ func get_max_x():
 	for cell in used_cells:
 		if cell.x > max_x:
 			max_x = cell.x
-	print(max_x)
 	return max_x
 
 
@@ -59,5 +58,4 @@ func get_max_y():
 	for cell in used_cells:
 		if cell.y > max_y:
 			max_y = cell.y
-	print(max_y)
 	return max_y
