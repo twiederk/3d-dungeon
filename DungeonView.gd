@@ -1,5 +1,5 @@
 extends Node3D
-class_name Universe
+class_name DungeonView
 
 @export var MapScene: PackedScene
 

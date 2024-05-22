@@ -27,9 +27,11 @@ const coords_to_hex_mapping = {
 
 func get_hex_map() -> Array:
 	var hex_map = Array()
-	for y in range(4):
+	var max_x = get_max_x()
+	var max_y = get_max_y()
+	for y in range(max_y + 1):
 		var col = ""
-		for x in range(4):
+		for x in range(max_x + 1):
 			var atlas_coords = tile_map.get_cell_atlas_coords(LAYER, Vector2(x, y))
 			var hex = coords_to_hex(atlas_coords)
 			col += hex
@@ -39,3 +41,23 @@ func get_hex_map() -> Array:
 
 func coords_to_hex(coords: Vector2):
 	return coords_to_hex_mapping[coords]
+
+
+func get_max_x():
+	var used_cells = tile_map.get_used_cells(0)
+	var max_x = 0
+	for cell in used_cells:
+		if cell.x > max_x:
+			max_x = cell.x
+	print(max_x)
+	return max_x
+
+
+func get_max_y():
+	var used_cells = tile_map.get_used_cells(0)
+	var max_y = 0
+	for cell in used_cells:
+		if cell.y > max_y:
+			max_y = cell.y
+	print(max_y)
+	return max_y
