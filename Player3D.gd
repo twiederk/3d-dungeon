@@ -59,9 +59,10 @@ func turn_right() -> int:
 
 
 func teleport_to_zero():
-		position = Vector3.ZERO
-		rotation = Vector3.ZERO
-		facing = Facing.North
+	position = Vector3.ZERO
+	rotation = Vector3.ZERO
+	facing = Facing.North
+	moved_player.emit(position)
 
 
 func move_forward():
