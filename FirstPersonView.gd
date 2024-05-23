@@ -2,12 +2,12 @@ class_name FirstPersonView
 extends Node3D
 
 const CellScene = preload("res://Cell.tscn")
+const GRID_SIZE_3D = 2
 
-
-func generate_map(map: Array, grid_size: int):
+func generate_map(map: Array):
 	for y in map.size():
 		for x in range(map[0].length()):
-			var cell = create_cell(x, y, grid_size)
+			var cell = create_cell(x, y)
 			var walls = map[y][x]
 			hide_walls(cell, walls)
 
@@ -24,8 +24,8 @@ func hide_walls(cell: Cell, walls: String):
 		cell.westFace.hide()
 
 
-func create_cell(x: int, z: int, grid_size: int) -> Cell:
+func create_cell(x: int, z: int) -> Cell:
 	var cell = CellScene.instantiate()
 	add_child(cell)
-	cell.position = Vector3(x * grid_size, 0, z * grid_size)
+	cell.position = Vector3(x * GRID_SIZE_3D, 0, z * GRID_SIZE_3D)
 	return cell

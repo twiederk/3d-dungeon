@@ -5,8 +5,6 @@ signal moved_player(Vector3)
 
 enum Facing { North = 0, West = 90, South = 180, East = 270 }
 
-const GRID_SIZE_3D = 2
-
 var facing = Facing.North
 
 
@@ -64,18 +62,18 @@ func move_forward(hex_map: Array):
 	if collision_check(hex_map):
 		return
 	if facing == Facing.North:
-		position += Vector3(0, 0, -GRID_SIZE_3D)
+		position += Vector3(0, 0, -FirstPersonView.GRID_SIZE_3D)
 	elif facing == Facing.East:
-		position += Vector3(GRID_SIZE_3D, 0, 0)
+		position += Vector3(FirstPersonView.GRID_SIZE_3D, 0, 0)
 	elif facing == Facing.South:
-		position += Vector3(0, 0, GRID_SIZE_3D)
+		position += Vector3(0, 0, FirstPersonView.GRID_SIZE_3D)
 	elif facing == Facing.West:
-		position += Vector3(-GRID_SIZE_3D, 0, 0)
+		position += Vector3(-FirstPersonView.GRID_SIZE_3D, 0, 0)
 	moved_player.emit(position)
 
 
 func collision_check(hex_map: Array) -> bool:
-	var walls = hex_map[position.z / GRID_SIZE_3D][position.x / GRID_SIZE_3D]
+	var walls = hex_map[position.z / FirstPersonView.GRID_SIZE_3D][position.x / FirstPersonView.GRID_SIZE_3D]
 	var hex = walls.hex_to_int()
 	if facing == Facing.North:
 		return hex & 0b0001 != 0
