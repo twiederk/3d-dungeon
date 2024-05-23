@@ -1,7 +1,6 @@
 class_name DungeonView
 extends Node3D
 
-const GRID_SIZE_3D = 2
 
 var hex_map: Array
 
@@ -18,7 +17,7 @@ func _ready():
 	#environment.dof_blur_far_enabled = true
 	#environment.dof_blur_near_enabled = true
 	hex_map = top_down_view.get_hex_map()
-	first_person_view.generate_map(hex_map)
+	first_person_view.generate_map(hex_map, player_3d.GRID_SIZE_3D)
 
 
 func _physics_process(_delta):

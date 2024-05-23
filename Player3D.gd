@@ -1,9 +1,11 @@
-class_name Player
+class_name Player3D
 extends Node3D
 
 signal moved_player(Vector3)
 
 enum Facing { North = 0, West = 90, South = 180, East = 270 }
+
+const GRID_SIZE_3D = 2
 
 var facing = Facing.North
 
@@ -12,11 +14,11 @@ func move(hex_map: Array):
 	if Input.is_action_just_pressed("forward"):
 		move_forward(hex_map)
 	#if Input.is_action_just_pressed("back"):
-		#position += Vector3(-Globals.GRID_SIZE, 0, 0)
+		#position += Vector3(-GRID_SIZE_3D, 0, 0)
 	#if Input.is_action_just_pressed("strafe_right"):
-		#position += Vector3(0, 0, Globals.GRID_SIZE)
+		#position += Vector3(0, 0, GRID_SIZE_3D)
 	#if Input.is_action_just_pressed("strafe_left"):
-		#position += Vector3(0, 0, -Globals.GRID_SIZE)
+		#position += Vector3(0, 0, -GRID_SIZE_3D)
 	if Input.is_action_just_pressed("turn_left"):
 		facing = turn_left()
 	if Input.is_action_just_pressed("turn_right"):
@@ -62,18 +64,18 @@ func move_forward(hex_map: Array):
 	if collision_check(hex_map):
 		return
 	if facing == Facing.North:
-		position += Vector3(0, 0, -Globals.GRID_SIZE)
+		position += Vector3(0, 0, -GRID_SIZE_3D)
 	elif facing == Facing.East:
-		position += Vector3(DungeonView.GRID_SIZE_3D, 0, 0)
+		position += Vector3(GRID_SIZE_3D, 0, 0)
 	elif facing == Facing.South:
-		position += Vector3(0, 0, Globals.GRID_SIZE)
+		position += Vector3(0, 0, GRID_SIZE_3D)
 	elif facing == Facing.West:
-		position += Vector3(-Globals.GRID_SIZE, 0, 0)
+		position += Vector3(-GRID_SIZE_3D, 0, 0)
 	moved_player.emit(position)
 
 
 func collision_check(hex_map: Array) -> bool:
-	var walls = hex_map[position.z / Globals.GRID_SIZE][position.x / Globals.GRID_SIZE]
+	var walls = hex_map[position.z / GRID_SIZE_3D][position.x / GRID_SIZE_3D]
 	var hex = walls.hex_to_int()
 	if facing == Facing.North:
 		return hex & 0b0001 != 0
