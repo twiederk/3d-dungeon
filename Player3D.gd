@@ -5,18 +5,18 @@ signal moved_player(Vector3)
 
 enum Facing { North = 0, West = 90, South = 180, East = 270 }
 
-var facing = Facing.North
+var facing: Facing = Facing.North
 
 
 func move(hex_map: Array):
 	if Input.is_action_just_pressed("forward"):
 		move_forward(hex_map)
 	#if Input.is_action_just_pressed("back"):
-		#position += Vector3(-GRID_SIZE_3D, 0, 0)
+		#position += Vector3(-FirstPersonView.GRID_SIZE_3D, 0, 0)
 	#if Input.is_action_just_pressed("strafe_right"):
-		#position += Vector3(0, 0, GRID_SIZE_3D)
+		#position += Vector3(0, 0, FirstPersonView.GRID_SIZE_3D)
 	#if Input.is_action_just_pressed("strafe_left"):
-		#position += Vector3(0, 0, -GRID_SIZE_3D)
+		#position += Vector3(0, 0, -FirstPersonView.GRID_SIZE_3D)
 	if Input.is_action_just_pressed("turn_left"):
 		facing = turn_left()
 	if Input.is_action_just_pressed("turn_right"):
@@ -25,7 +25,7 @@ func move(hex_map: Array):
 		teleport_to_zero()
 
 
-func turn_left() -> int:
+func turn_left() -> Facing:
 	if facing == Facing.North:
 		facing = Facing.West
 	elif facing == Facing.West:
@@ -38,7 +38,7 @@ func turn_left() -> int:
 	return facing
 
 
-func turn_right() -> int:
+func turn_right() -> Facing:
 	if facing == Facing.North:
 		facing = Facing.East
 	elif facing == Facing.East:
