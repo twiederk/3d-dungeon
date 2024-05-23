@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://u756lwn5o7gp"]
+
+[ext_resource type="Script" path="res://FirstPersonView.gd" id="1_qkvxy"]
+
+[node name="FirstPersonView" type="Node3D"]
+script = ExtResource("1_qkvxy")

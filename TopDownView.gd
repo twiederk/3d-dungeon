@@ -5,17 +5,8 @@ extends Node2D
 
 const GRID_SIZE_2D = 32
 
-var dungeon_map
-
 @onready var sprite_2d = $Sprite2D
 
-
-func _ready():
-	if not MapScene is PackedScene: return
-	dungeon_map = MapScene.instantiate()
-	add_child(dungeon_map)
-	Globals.map = dungeon_map.get_hex_map()
-	
 
 func set_player(new_position: Vector2):
 	sprite_2d.position.x = new_position.x * GRID_SIZE_2D
@@ -23,4 +14,8 @@ func set_player(new_position: Vector2):
 
 
 func get_hex_map() -> Array:
-	return dungeon_map.get_hex_map()
+	var dungeon_map = MapScene.instantiate()
+	add_child(dungeon_map)
+	var hex_map = dungeon_map.get_hex_map()
+	Globals.map = hex_map
+	return hex_map
