@@ -1,6 +1,8 @@
 class_name DungeonView
 extends Node3D
 
+const GRID_SIZE_3D = 2
+
 var hex_map: Array
 
 @onready var first_person_view = $FirstPersonView
