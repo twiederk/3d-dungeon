@@ -87,7 +87,7 @@ func collision_check(hex_map: Array) -> bool:
 	if facing == Facing.West:
 		return has_wall(hex, WEST_WALL)
 	return true
-	
+
 
 func has_wall(hex: int, wall: int) -> bool:
 	return hex & wall != 0
