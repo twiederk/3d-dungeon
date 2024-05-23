@@ -77,20 +77,19 @@ func move_forward():
 	elif facing == Facing.West:
 		position += Vector3(-Globals.GRID_SIZE, 0, 0)
 	moved_player.emit(position)
-		
 
 
 func collision_check() -> bool:
 	var walls = Globals.map[position.z / Globals.GRID_SIZE][position.x / Globals.GRID_SIZE]
 	var hex = walls.hex_to_int()
 	if facing == Facing.North:
-		return hex & 0b0001 != 0 
+		return hex & 0b0001 != 0
 	if facing == Facing.East:
-		return hex & 0b0010 != 0 
+		return hex & 0b0010 != 0
 	if facing == Facing.South:
-		return hex & 0b0100 != 0 
+		return hex & 0b0100 != 0
 	if facing == Facing.West:
-		return hex & 0b1000 != 0 
+		return hex & 0b1000 != 0
 	return true
 
 

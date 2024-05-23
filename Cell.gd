@@ -1,5 +1,5 @@
-extends Node3D
 class_name Cell
+extends Node3D
 
 @onready var topFace: = $TopFace
 @onready var northFace: = $NorthFace
@@ -8,8 +8,9 @@ class_name Cell
 @onready var westFace: = $WestFace
 @onready var bottomFace: = $BottomFace
 
+
 func update_faces(cell_list) -> void:
-	var my_grid_position = Vector2(position.x/Globals.GRID_SIZE, position.z/2)
+	var my_grid_position = Vector2(position.x / Globals.GRID_SIZE, position.z / Globals.GRID_SIZE)
 	if cell_list.has(my_grid_position + Vector2.RIGHT):
 		eastFace.queue_free()
 	if cell_list.has(my_grid_position + Vector2.LEFT):
