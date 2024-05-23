@@ -5,6 +5,7 @@ var hex_map: Array
 
 @onready var first_person_view = $FirstPersonView
 @onready var top_down_view: TopDownView = $TopDownView
+@onready var player_3d = $Player3D
 
 
 func _ready():
@@ -16,6 +17,10 @@ func _ready():
 	#environment.dof_blur_near_enabled = true
 	hex_map = top_down_view.get_hex_map()
 	first_person_view.generate_map(hex_map)
+
+
+func _physics_process(_delta):
+	player_3d.move(hex_map)
 
 
 func _on_player_moved_player(new_position: Vector3):

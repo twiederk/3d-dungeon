@@ -15,9 +15,9 @@ var facing = Facing.North
 @onready var left: = $RayLeft
 
 
-func _process(_delta):
+func move(hex_map: Array):
 	if Input.is_action_just_pressed("forward"):
-		move_forward()
+		move_forward(hex_map)
 	#if Input.is_action_just_pressed("back"):
 		#position += Vector3(-Globals.GRID_SIZE, 0, 0)
 	#if Input.is_action_just_pressed("strafe_right"):
@@ -65,8 +65,8 @@ func teleport_to_zero():
 	moved_player.emit(position)
 
 
-func move_forward():
-	if collision_check():
+func move_forward(hex_map: Array):
+	if collision_check(hex_map):
 		return
 	if facing == Facing.North:
 		position += Vector3(0, 0, -Globals.GRID_SIZE)
@@ -79,8 +79,8 @@ func move_forward():
 	moved_player.emit(position)
 
 
-func collision_check() -> bool:
-	var walls = Globals.map[position.z / Globals.GRID_SIZE][position.x / Globals.GRID_SIZE]
+func collision_check(hex_map: Array) -> bool:
+	var walls = hex_map[position.z / Globals.GRID_SIZE][position.x / Globals.GRID_SIZE]
 	var hex = walls.hex_to_int()
 	if facing == Facing.North:
 		return hex & 0b0001 != 0

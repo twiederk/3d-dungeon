@@ -17,5 +17,4 @@ func get_hex_map() -> Array:
 	var dungeon_map = MapScene.instantiate()
 	add_child(dungeon_map)
 	var hex_map = dungeon_map.get_hex_map()
-	Globals.map = hex_map
 	return hex_map
