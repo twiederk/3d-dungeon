@@ -5,6 +5,11 @@ signal moved_player(Vector3)
 
 enum Facing { North = 0, West = 90, South = 180, East = 270 }
 
+const NORTH_WALL = 0b0001
+const EAST_WALL = 0b0010
+const SOUTH_WALL = 0b0100
+const WEST_WALL = 0b1000
+
 var facing: Facing = Facing.North
 
 
@@ -74,11 +79,15 @@ func collision_check(hex_map: Array) -> bool:
 	var walls = hex_map[position.z / FirstPersonView.GRID_SIZE_3D][position.x / FirstPersonView.GRID_SIZE_3D]
 	var hex = walls.hex_to_int()
 	if facing == Facing.North:
-		return hex & 0b0001 != 0
+		return has_wall(hex, NORTH_WALL)
 	if facing == Facing.East:
-		return hex & 0b0010 != 0
+		return has_wall(hex, EAST_WALL)
 	if facing == Facing.South:
-		return hex & 0b0100 != 0
+		return has_wall(hex, SOUTH_WALL)
 	if facing == Facing.West:
-		return hex & 0b1000 != 0
+		return has_wall(hex, WEST_WALL)
 	return true
+	
+
+func has_wall(hex: int, wall: int) -> bool:
+	return hex & wall != 0
