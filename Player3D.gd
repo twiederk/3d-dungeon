@@ -18,14 +18,14 @@ func move(hex_map: Array):
 	#if Input.is_action_just_pressed("strafe_left"):
 		#position += Vector3(0, 0, -FirstPersonView.GRID_SIZE_3D)
 	if Input.is_action_just_pressed("turn_left"):
-		facing = turn_left()
+		turn_left()
 	if Input.is_action_just_pressed("turn_right"):
-		facing = turn_right()
+		turn_right()
 	if Input.is_action_just_pressed("teleport_to_zero"):
 		teleport_to_zero()
 
 
-func turn_left() -> Facing:
+func turn_left():
 	if facing == Facing.North:
 		facing = Facing.West
 	elif facing == Facing.West:
@@ -35,10 +35,9 @@ func turn_left() -> Facing:
 	elif facing == Facing.East:
 		facing = Facing.North
 	rotation.y = deg_to_rad(facing)
-	return facing
 
 
-func turn_right() -> Facing:
+func turn_right():
 	if facing == Facing.North:
 		facing = Facing.East
 	elif facing == Facing.East:
@@ -48,7 +47,6 @@ func turn_right() -> Facing:
 	elif facing == Facing.West:
 		facing = Facing.North
 	rotation.y = deg_to_rad(facing)
-	return facing
 
 
 func teleport_to_zero():
