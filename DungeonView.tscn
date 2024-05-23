@@ -17,6 +17,8 @@ script = ExtResource("1_mevt6")
 [node name="FirstPersonView" parent="." instance=ExtResource("2_sc6y0")]
 
 [node name="TopDownView" parent="." instance=ExtResource("4_2a3bp")]
+modulate = Color(1, 1, 1, 0.501961)
+scale = Vector2(0.5, 0.5)
 MapScene = ExtResource("4_70xj4")
 
 [node name="Player" parent="." instance=ExtResource("3_nu5us")]
