@@ -20,7 +20,7 @@ func _ready():
 	first_person_view.generate_map(hex_map)
 
 
-func _physics_process(_delta):
+func _process(_delta):
 	player_3d.move(hex_map)
 
 
