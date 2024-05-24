@@ -75,7 +75,6 @@ func check_neighbors(cell: Vector2, unvisited: Array) -> Array:
 func make_maze():
 	var unvisited = []  # array of unvisited tiles
 	var stack = []
-	# fill the map with solid tiles
 	init_maze(unvisited)
 	var current = Vector2(0, 0)
 	unvisited.erase(current)
@@ -85,12 +84,7 @@ func make_maze():
 		if neighbors.size() > 0:
 			var next = neighbors[randi() % neighbors.size()]
 			stack.append(current)
-			# remove walls from *both* cells
-			var dir = next - current
-			var current_walls = coords_to_int_mapping[tile_map.get_cell_atlas_coords(TILE_SET_LAYER_GROUND, current)] - cell_walls[dir]
-			var next_walls = coords_to_int_mapping[tile_map.get_cell_atlas_coords(TILE_SET_LAYER_GROUND, next)] - cell_walls[-dir]
-			tile_map.set_cell(TILE_SET_LAYER_GROUND, current, TILE_SET_SOURCE_ID, hex_to_coords_mapping[current_walls])
-			tile_map.set_cell(TILE_SET_LAYER_GROUND, next, TILE_SET_SOURCE_ID, hex_to_coords_mapping[next_walls])
+			remove_walls(current, next)
 			current = next
 			unvisited.erase(current)
 		elif stack:
@@ -98,9 +92,19 @@ func make_maze():
 
 
 func init_maze(unvisited: Array):
+	# fill the map with solid tiles
 	tile_map.clear()
 	for x in range(width):
 		for y in range(height):
 			var map_position = Vector2(x, y)
 			unvisited.append(map_position)
 			tile_map.set_cell(TILE_SET_LAYER_GROUND, map_position, TILE_SET_SOURCE_ID, hex_to_coords_mapping[15])
+
+
+func remove_walls(current: Vector2, next: Vector2):
+	# remove walls from *both* cells
+	var dir = next - current
+	var current_walls = coords_to_int_mapping[tile_map.get_cell_atlas_coords(TILE_SET_LAYER_GROUND, current)] - cell_walls[dir]
+	var next_walls = coords_to_int_mapping[tile_map.get_cell_atlas_coords(TILE_SET_LAYER_GROUND, next)] - cell_walls[-dir]
+	tile_map.set_cell(TILE_SET_LAYER_GROUND, current, TILE_SET_SOURCE_ID, hex_to_coords_mapping[current_walls])
+	tile_map.set_cell(TILE_SET_LAYER_GROUND, next, TILE_SET_SOURCE_ID, hex_to_coords_mapping[next_walls])
