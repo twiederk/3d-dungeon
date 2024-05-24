@@ -16,7 +16,7 @@ const cell_walls = {
 const TILE_SET_LAYER_GROUND = 0
 const TILE_SET_SOURCE_ID = 0
 
-const width = 25  # width of map (in tiles)
+const width = 15  # width of map (in tiles)
 const height = 15  # height of map (in tiles)
 
 const coords_to_int_mapping = {
