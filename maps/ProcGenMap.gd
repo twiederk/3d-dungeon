@@ -76,12 +76,7 @@ func make_maze():
 	var unvisited = []  # array of unvisited tiles
 	var stack = []
 	# fill the map with solid tiles
-	tile_map.clear()
-	for x in range(width):
-		for y in range(height):
-			var map_position = Vector2(x, y)
-			unvisited.append(map_position)
-			tile_map.set_cell(TILE_SET_LAYER_GROUND, map_position, TILE_SET_SOURCE_ID, hex_to_coords_mapping[15])
+	init_maze(unvisited)
 	var current = Vector2(0, 0)
 	unvisited.erase(current)
 
@@ -101,3 +96,11 @@ func make_maze():
 		elif stack:
 			current = stack.pop_back()
 
+
+func init_maze(unvisited: Array):
+	tile_map.clear()
+	for x in range(width):
+		for y in range(height):
+			var map_position = Vector2(x, y)
+			unvisited.append(map_position)
+			tile_map.set_cell(TILE_SET_LAYER_GROUND, map_position, TILE_SET_SOURCE_ID, hex_to_coords_mapping[15])
