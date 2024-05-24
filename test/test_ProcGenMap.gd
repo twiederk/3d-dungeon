@@ -14,7 +14,7 @@ func after_each():
 func test_can_instanciate():
 
 	# act
-	var hex = proc_gen_map.coords_to_hex_mapping[Vector2i(6, 3)]
+	var hex = proc_gen_map.coords_to_int_mapping[Vector2i(6, 3)]
 
 	# assert
 	assert_eq(hex, 15)
