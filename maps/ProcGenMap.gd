@@ -16,7 +16,6 @@ const cell_walls = {
 const TILE_SET_LAYER_GROUND = 0
 const TILE_SET_SOURCE_ID = 0
 
-const tile_size = 64  # tile size (in pixels)
 const width = 25  # width of map (in tiles)
 const height = 15  # height of map (in tiles)
 
@@ -64,7 +63,6 @@ const hex_to_coords_mapping = {
 
 func _ready():
 	randomize()
-	#tile_size = tile_map.cell_size
 	make_maze()
 
 
