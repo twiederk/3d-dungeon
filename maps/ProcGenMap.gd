@@ -1,5 +1,5 @@
 class_name ProcGenMap
-extends Node2D
+extends Map
 
 const N = 1
 const E = 2
@@ -19,7 +19,7 @@ const TILE_SET_SOURCE_ID = 0
 const width = 25  # width of map (in tiles)
 const height = 15  # height of map (in tiles)
 
-const coords_to_hex_mapping = {
+const coords_to_int_mapping = {
 	Vector2i(5, 2): 0,
 	Vector2i(1, 0): 1,
 	Vector2i(4, 2): 2,
@@ -58,9 +58,6 @@ const hex_to_coords_mapping = {
 }
 
 
-@onready var tile_map = $TileMap
-
-
 func _ready():
 	randomize()
 	make_maze()
@@ -95,8 +92,8 @@ func make_maze():
 			stack.append(current)
 			# remove walls from *both* cells
 			var dir = next - current
-			var current_walls = coords_to_hex_mapping[tile_map.get_cell_atlas_coords(TILE_SET_LAYER_GROUND, current)] - cell_walls[dir]
-			var next_walls = coords_to_hex_mapping[tile_map.get_cell_atlas_coords(TILE_SET_LAYER_GROUND, next)] - cell_walls[-dir]
+			var current_walls = coords_to_int_mapping[tile_map.get_cell_atlas_coords(TILE_SET_LAYER_GROUND, current)] - cell_walls[dir]
+			var next_walls = coords_to_int_mapping[tile_map.get_cell_atlas_coords(TILE_SET_LAYER_GROUND, next)] - cell_walls[-dir]
 			tile_map.set_cell(TILE_SET_LAYER_GROUND, current, TILE_SET_SOURCE_ID, hex_to_coords_mapping[current_walls])
 			tile_map.set_cell(TILE_SET_LAYER_GROUND, next, TILE_SET_SOURCE_ID, hex_to_coords_mapping[next_walls])
 			current = next
