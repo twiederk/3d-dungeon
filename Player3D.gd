@@ -62,29 +62,27 @@ func teleport_to_zero():
 
 
 func move_forward(hex_map: Array):
-	if collision_check(hex_map):
-		return
-	if facing == Facing.North:
+	if facing == Facing.North and not check_collision(hex_map, Facing.North):
 		position += Vector3(0, 0, -FirstPersonView.GRID_SIZE_3D)
-	elif facing == Facing.East:
+	elif facing == Facing.East and not check_collision(hex_map, Facing.East):
 		position += Vector3(FirstPersonView.GRID_SIZE_3D, 0, 0)
-	elif facing == Facing.South:
+	elif facing == Facing.South and not check_collision(hex_map, Facing.South):
 		position += Vector3(0, 0, FirstPersonView.GRID_SIZE_3D)
-	elif facing == Facing.West:
+	elif facing == Facing.West and not check_collision(hex_map, Facing.West):
 		position += Vector3(-FirstPersonView.GRID_SIZE_3D, 0, 0)
 	moved_player.emit(position)
 
 
-func collision_check(hex_map: Array) -> bool:
+func check_collision(hex_map: Array, direction: Facing) -> bool:
 	var walls = hex_map[position.z / FirstPersonView.GRID_SIZE_3D][position.x / FirstPersonView.GRID_SIZE_3D]
 	var hex = walls.hex_to_int()
-	if facing == Facing.North:
+	if direction == Facing.North:
 		return has_wall(hex, NORTH_WALL)
-	if facing == Facing.East:
+	if direction == Facing.East:
 		return has_wall(hex, EAST_WALL)
-	if facing == Facing.South:
+	if direction == Facing.South:
 		return has_wall(hex, SOUTH_WALL)
-	if facing == Facing.West:
+	if direction == Facing.West:
 		return has_wall(hex, WEST_WALL)
 	return true
 
