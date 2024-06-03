@@ -2,11 +2,11 @@ class_name TextMap
 extends Node
 
 
-func get_hex_map() -> Array:
+func get_hex_map() -> Array[String]:
 	return load_map_from_file("res://maps/map3.txt")
 
 
-func load_map_from_file(file_name: String) -> Array:
+func load_map_from_file(file_name: String) -> Array[String]:
 	var allthelines = []        
 	var file = FileAccess.open(file_name, FileAccess.READ)
 	while !file.eof_reached():

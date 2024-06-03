@@ -2,7 +2,7 @@ class_name DungeonView
 extends Node3D
 
 
-var hex_map: Array
+var hex_map: Array[String]
 
 @onready var first_person_view = $FirstPersonView
 @onready var top_down_view: TopDownView = $TopDownView

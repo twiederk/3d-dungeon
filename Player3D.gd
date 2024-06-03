@@ -13,7 +13,7 @@ const WEST_WALL = 0b1000
 var facing: Facing = Facing.North
 
 
-func move(hex_map: Array):
+func move(hex_map: Array[String]):
 	if Input.is_action_just_pressed("forward"):
 		move_forward(hex_map)
 	if Input.is_action_just_pressed("back"):
@@ -61,7 +61,7 @@ func teleport_to_zero():
 	moved_player.emit(position)
 
 
-func move_forward(hex_map: Array):
+func move_forward(hex_map: Array[String]):
 	if facing == Facing.North and not check_collision(hex_map, Facing.North):
 		position += Vector3(0, 0, -FirstPersonView.GRID_SIZE_3D)
 	elif facing == Facing.East and not check_collision(hex_map, Facing.East):
@@ -73,7 +73,7 @@ func move_forward(hex_map: Array):
 	moved_player.emit(position)
 
 
-func move_back(hex_map: Array):
+func move_back(hex_map: Array[String]):
 	if facing == Facing.North and not check_collision(hex_map, Facing.South):
 		position += Vector3(0, 0, FirstPersonView.GRID_SIZE_3D)
 	elif facing == Facing.East and not check_collision(hex_map, Facing.West):
@@ -85,7 +85,7 @@ func move_back(hex_map: Array):
 	moved_player.emit(position)
 
 
-func check_collision(hex_map: Array, direction: Facing) -> bool:
+func check_collision(hex_map: Array[String], direction: Facing) -> bool:
 	var walls = hex_map[position.z / FirstPersonView.GRID_SIZE_3D][position.x / FirstPersonView.GRID_SIZE_3D]
 	var hex = walls.hex_to_int()
 	if direction == Facing.North:

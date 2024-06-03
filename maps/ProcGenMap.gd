@@ -63,9 +63,9 @@ func _ready():
 	make_maze()
 
 
-func check_neighbors(cell: Vector2, unvisited: Array) -> Array:
+func check_neighbors(cell: Vector2, unvisited: Array[Vector2]) -> Array[Vector2]:
 	# returns an array of cell's unvisited neighbors
-	var list = []
+	var list : Array[Vector2] = []
 	for cell_wall in cell_walls.keys():
 		if cell + cell_wall in unvisited:
 			list.append(cell + cell_wall)
@@ -73,8 +73,8 @@ func check_neighbors(cell: Vector2, unvisited: Array) -> Array:
 
 
 func make_maze():
-	var unvisited = []  # array of unvisited tiles
-	var stack = []
+	var unvisited : Array[Vector2] = []  # array of unvisited tiles
+	var stack : Array[Vector2] = []
 	init_maze(unvisited)
 	var current = Vector2(0, 0)
 	unvisited.erase(current)
@@ -91,7 +91,7 @@ func make_maze():
 			current = stack.pop_back()
 
 
-func init_maze(unvisited: Array):
+func init_maze(unvisited: Array[Vector2]):
 	# fill the map with solid tiles
 	tile_map.clear()
 	for x in range(width):

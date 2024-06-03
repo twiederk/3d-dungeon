@@ -25,8 +25,8 @@ const coords_to_hex_mapping = {
 }
 
 
-func get_hex_map() -> Array:
-	var hex_map = Array()
+func get_hex_map() -> Array[String]:
+	var hex_map : Array[String] = []
 	var max_x = get_max_x()
 	var max_y = get_max_y()
 	for y in range(max_y + 1):

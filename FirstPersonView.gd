@@ -4,7 +4,7 @@ extends Node3D
 const CellScene = preload("res://Cell.tscn")
 const GRID_SIZE_3D = 2
 
-func generate_map(map: Array):
+func generate_map(map: Array[String]):
 	for y in map.size():
 		for x in range(map[0].length()):
 			var cell = create_cell(x, y)

@@ -17,7 +17,7 @@ func set_player(new_position: Vector2):
 	sprite_2d.position.y = new_position.y * GRID_SIZE_2D
 
 
-func get_hex_map() -> Array:
+func get_hex_map() -> Array[String]:
 	var dungeon_map = MapScene.instantiate()
 	add_child(dungeon_map)
 	var hex_map = dungeon_map.get_hex_map()
